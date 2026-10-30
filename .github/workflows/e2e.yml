@@ -25,7 +25,7 @@ jobs:
       - run: npm run lint
 
   e2e:
-    name: E2E ${{ matrix.env }}
+    name: ${{ matrix.env == 'rc' && 'E2E rc · detección de defectos (fallo esperado)' || 'E2E stable · gate de liberación' }}
     needs: quality-gate
     runs-on: ubuntu-latest
     strategy:
@@ -46,9 +46,9 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - name: Ejecutar suite
         run: npx playwright test --grep @${{ inputs.suite || 'regression' }}
-      - name: Resumen JSON
+      - name: Resumen (JSON + tabla en el Summary)
         if: always()
-        run: node scripts/summary.mjs reports/results-${{ matrix.env }}.json >> "$GITHUB_STEP_SUMMARY"
+        run: node scripts/summary.mjs reports/results-${{ matrix.env }}.json --md >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         if: always()
         with:

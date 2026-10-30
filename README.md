@@ -47,7 +47,7 @@ Prueba técnica QA (HelpPeople). Proyecto de automatización mantenible sobre **
 
 ## 2. Requisitos e instalación
 ```bash
-node -v                                # >= 20
+node -v                                # >= 20 (ver .nvmrc: 22)
 npm ci                                 # instala dependencias exactas (package-lock.json)
 npx playwright install chromium        # navegador
 cp .env.example .env                   # Windows PowerShell: Copy-Item .env.example .env
@@ -71,7 +71,7 @@ Playwright levanta el servidor local automáticamente (`webServer`).
 | Otro ambiente | `TEST_ENV=example BASE_URL=https://... npx playwright test` · PowerShell: `$env:TEST_ENV="rc"; npx playwright test --grep @smoke` |
 | Fallo controlado (demo de evidencias) | `npm run test:demo-failure` |
 | Ver reporte HTML | `npx playwright show-report reports/html-local` |
-| Resumen JSON / clasificación | `npm run summary -- reports/results-local.json` |
+| Resumen JSON / clasificación | `npm run summary -- reports/results-local.json` (agregar `--md` para tabla Markdown) |
 | Calidad del código | `npm run typecheck` · `npm run lint` |
 
 ### Variables (`.env`)
@@ -141,7 +141,8 @@ Para abrir una traza: `npx playwright show-trace docs/evidencias/fallo-controlad
 `.github/workflows/e2e.yml`:
 1. Typecheck + lint como *quality gate* del código de pruebas.
 2. Matriz `local` (bloqueante) y `rc` (informativo, `continue-on-error`).
-3. Resumen en `GITHUB_STEP_SUMMARY` y reportes, trazas y JUnit publicados como artefactos.
+3. Tabla de resultados en el *Summary* del run (clasificación por caso y defecto asociado); reportes HTML, trazas y JUnit publicados como artefactos.
+   - El job **"E2E rc · detección de defectos (fallo esperado)"** aparece en rojo a propósito: es la prueba de que la suite detecta las 8 regresiones del build `rc`. El run completo queda en verde porque el gate es el job **"E2E stable"**.
 4. Ejecución manual que permite elegir la suite `smoke` o `regression`.
 
 ## 8. Limitaciones conocidas

@@ -57,6 +57,32 @@ const summary = {
 };
 const out = file.replace(/results-/, 'summary-');
 writeFileSync(out, JSON.stringify(summary, null, 2));
-console.table(rows.map(({ id, caso, resultado, clasificacion, issue }) => ({ id, caso: caso.slice(0, 70), resultado, clasificacion, issue })));
-console.log(`\nAmbiente: ${summary.ambiente} · Totales: ${JSON.stringify(summary.totales)} · Fallos: ${JSON.stringify(summary.fallosPorClasificacion)}`);
-console.log(`Resumen guardado en ${out}`);
+
+// --md: tabla Markdown (para GITHUB_STEP_SUMMARY). Sin flag: tabla de consola.
+if (process.argv.includes('--md')) {
+  const icon = { passed: '✅', failed: '❌', flaky: '⚠️', skipped: '⏭️' };
+  const t = summary.totales;
+  const isRc = /rc/.test(String(summary.ambiente));
+  const lines = [
+    `## Resultado E2E · ambiente \`${summary.ambiente}\``,
+    '',
+    isRc
+      ? '> **Build `rc` (release candidate con regresiones conocidas).** Aquí se ESPERA que la regresión falle: cada ❌ es un defecto real del producto detectado por la suite (ver `docs/DEFECTOS.md`). Este job no bloquea el pipeline.'
+      : '> **Build `stable`.** Este job es el gate de liberación: cualquier ❌ bloquea.',
+    '',
+    `| Total | ✅ Aprobados | ❌ Fallidos | ⚠️ Flaky | ⏭️ Omitidos |`,
+    `|---|---|---|---|---|`,
+    `| ${t.total} | ${t.passed} | ${t.failed} | ${t.flaky} | ${t.skipped} |`,
+    '',
+    `| ID | Caso | Resultado | Clasificación | Defecto |`,
+    `|---|---|---|---|---|`,
+    ...rows.map(r => `| ${r.id} | ${r.caso.replace(/\|/g, '\\|')} | ${icon[r.resultado] ?? ''} ${r.resultado} | ${r.clasificacion || '—'} | ${r.resultado === 'failed' ? (r.issue || '—') : '—'} |`),
+    '',
+    'Clasificación: `PRODUCTO` = defecto del producto · `AUTOMATIZACION` = error del código de prueba · `AMBIENTE` = bloqueo de ambiente · `INTERMITENTE` = pasó tras reintento.',
+  ];
+  console.log(lines.join('\n'));
+} else {
+  console.table(rows.map(({ id, caso, resultado, clasificacion, issue }) => ({ id, caso: caso.slice(0, 70), resultado, clasificacion, issue })));
+  console.log(`\nAmbiente: ${summary.ambiente} · Totales: ${JSON.stringify(summary.totales)} · Fallos: ${JSON.stringify(summary.fallosPorClasificacion)}`);
+  console.log(`Resumen guardado en ${out}`);
+}
