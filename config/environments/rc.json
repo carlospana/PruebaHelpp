@@ -1,0 +1,8 @@
+{
+  "name": "rc",
+  "description": "Release candidate con regresiones conocidas (build=rc). Se espera que la regresión FALLE y detecte los defectos.",
+  "baseURL": "http://127.0.0.1:4173",
+  "appQuery": "build=rc",
+  "startLocalServer": true,
+  "expectedBuild": "rc"
+}

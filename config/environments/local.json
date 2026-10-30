@@ -1,0 +1,8 @@
+{
+  "name": "local",
+  "description": "Build estable servida localmente por scripts/serve.mjs",
+  "baseURL": "http://127.0.0.1:4173",
+  "appQuery": "",
+  "startLocalServer": true,
+  "expectedBuild": "stable"
+}

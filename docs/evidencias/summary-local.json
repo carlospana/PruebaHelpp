@@ -1,0 +1,169 @@
+{
+  "ambiente": "local",
+  "build": "stable",
+  "generado": "2026-10-30T15:01:59.553Z",
+  "totales": {
+    "total": 14,
+    "passed": 14,
+    "failed": 0,
+    "flaky": 0,
+    "skipped": 0
+  },
+  "fallosPorClasificacion": {},
+  "casos": [
+    {
+      "id": "QA01",
+      "caso": "carga el dashboard y permite navegar a todos los módulos",
+      "tags": "@smoke @regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "",
+      "error": "",
+      "duracionMs": 1905
+    },
+    {
+      "id": "QA01",
+      "caso": "el KPI de stock crítico coincide con los productos activos en estado crítico",
+      "tags": "@regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "DEF-12 (build rc)",
+      "error": "",
+      "duracionMs": 1526
+    },
+    {
+      "id": "QA02",
+      "caso": "rechaza una salida mayor al stock disponible e informa el motivo",
+      "tags": "@smoke @regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "DEF-07 (build rc)",
+      "error": "",
+      "duracionMs": 1671
+    },
+    {
+      "id": "QA02",
+      "caso": "impide eliminar un producto con movimientos registrados",
+      "tags": "@regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "DEF-03 (build rc)",
+      "error": "",
+      "duracionMs": 1422
+    },
+    {
+      "id": "QA03",
+      "caso": "crea un producto y persiste al volver a consultarlo",
+      "tags": "@smoke @regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "DEF-01 (build rc)",
+      "error": "",
+      "duracionMs": 1866
+    },
+    {
+      "id": "QA03",
+      "caso": "un producto creado con stock ≤ mínimo queda marcado como crítico y se advierte",
+      "tags": "@regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "DEF-02 (build rc)",
+      "error": "",
+      "duracionMs": 1757
+    },
+    {
+      "id": "QA04",
+      "caso": "no guarda un producto con campos obligatorios vacíos y señala cada campo",
+      "tags": "@regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "",
+      "error": "",
+      "duracionMs": 1342
+    },
+    {
+      "id": "QA04",
+      "caso": "rechaza un código de producto duplicado",
+      "tags": "@regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "",
+      "error": "",
+      "duracionMs": 1273
+    },
+    {
+      "id": "QA04",
+      "caso": "rechaza un proveedor con correo electrónico inválido",
+      "tags": "@regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "DEF-10 (build rc)",
+      "error": "",
+      "duracionMs": 1048
+    },
+    {
+      "id": "QA05",
+      "caso": "una entrada de inventario incrementa el stock y queda trazada",
+      "tags": "@regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "",
+      "error": "",
+      "duracionMs": 3069
+    },
+    {
+      "id": "QA05",
+      "caso": "editar un producto actualiza sus datos y el código no es editable",
+      "tags": "@regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "",
+      "error": "",
+      "duracionMs": 2863
+    },
+    {
+      "id": "QA06",
+      "caso": "busca productos por código y por nombre parcial",
+      "tags": "@regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "DEF-04 (build rc)",
+      "error": "",
+      "duracionMs": 831
+    },
+    {
+      "id": "QA06",
+      "caso": "filtra productos por categoría",
+      "tags": "@regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "",
+      "error": "",
+      "duracionMs": 967
+    },
+    {
+      "id": "QA06",
+      "caso": "filtra proveedores por estado",
+      "tags": "@regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "DEF-09 (build rc)",
+      "error": "",
+      "duracionMs": 632
+    }
+  ]
+}

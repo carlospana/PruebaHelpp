@@ -1,0 +1,14 @@
+{
+  "_comment": "Datos semilla conocidos de ContaStock (app/index.html). Se usan como precondición de solo lectura; las pruebas NO los modifican salvo en su propio contexto aislado.",
+  "products": {
+    "withMovements": { "codigo": "PRD001", "nombre": "Resma de papel A4" },
+    "lowStock": { "codigo": "PRD003", "nombre": "Detergente industrial 5L", "stock": 3 },
+    "mouse": { "codigo": "PRD005", "nombre": "Mouse inalámbrico", "stock": 12 },
+    "toner": { "codigo": "PRD002", "nombre": "Tóner impresora HP" }
+  },
+  "categories": {
+    "tecnologia": { "nombre": "Tecnología", "productCodes": ["PRD002", "PRD005", "PRD009"] },
+    "papeleria": { "nombre": "Papelería" }
+  },
+  "providers": { "inactiveCount": 1, "total": 6 }
+}

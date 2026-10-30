@@ -1,0 +1,32 @@
+{
+  "name": "contastock-qa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Automatización E2E con Playwright + TypeScript para ContaStock Pro (prueba técnica QA)",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "app": "node scripts/serve.mjs",
+    "test": "playwright test",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:regression": "playwright test --grep @regression",
+    "test:rc": "cross-env TEST_ENV=rc playwright test --grep @regression",
+    "test:headed": "playwright test --headed",
+    "test:demo-failure": "cross-env DEMO_FAILURE=1 playwright test --grep @demo-failure",
+    "report": "playwright show-report reports/html",
+    "summary": "node scripts/summary.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^22.20.5",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.4.2",
+    "eslint": "^9.39.5",
+    "eslint-plugin-playwright": "^2.12.1",
+    "typescript": "5.9",
+    "typescript-eslint": "^8.72.1"
+  }
+}

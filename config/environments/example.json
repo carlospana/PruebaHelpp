@@ -1,0 +1,8 @@
+{
+  "name": "example",
+  "description": "Perfil de ejemplo para un despliegue remoto (p. ej. GitHub Pages). Sin credenciales: la URL se toma de BASE_URL.",
+  "baseURL": "https://<usuario>.github.io/contastock-qa/app",
+  "appQuery": "",
+  "startLocalServer": false,
+  "expectedBuild": "stable"
+}

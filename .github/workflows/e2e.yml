@@ -1,0 +1,59 @@
+name: E2E · ContaStock
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: 'Suite a ejecutar'
+        type: choice
+        options: [regression, smoke]
+        default: regression
+
+jobs:
+  quality-gate:
+    name: Calidad del código de pruebas
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+
+  e2e:
+    name: E2E ${{ matrix.env }}
+    needs: quality-gate
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        env: [local, rc]
+    # El build rc contiene regresiones conocidas: se ejecuta para demostrar detección,
+    # no bloquea el pipeline. El build estable SÍ es gate de liberación.
+    continue-on-error: ${{ matrix.env == 'rc' }}
+    env:
+      TEST_ENV: ${{ matrix.env }}
+      RUN_ID: ${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Ejecutar suite
+        run: npx playwright test --grep @${{ inputs.suite || 'regression' }}
+      - name: Resumen JSON
+        if: always()
+        run: node scripts/summary.mjs reports/results-${{ matrix.env }}.json >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reportes-${{ matrix.env }}
+          path: |
+            reports/
+            test-results/
+          retention-days: 14

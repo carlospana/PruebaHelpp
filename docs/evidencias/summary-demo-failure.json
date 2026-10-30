@@ -1,0 +1,28 @@
+{
+  "ambiente": "local (demo fallo controlado)",
+  "build": "stable",
+  "generado": "2026-10-30T15:01:59.761Z",
+  "totales": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "flaky": 0,
+    "skipped": 0
+  },
+  "fallosPorClasificacion": {
+    "DEMO_CONTROLADO": 1
+  },
+  "casos": [
+    {
+      "id": "—",
+      "caso": "DEMO · fallo controlado: se espera un total de productos activos incorrecto",
+      "tags": "@demo-failure",
+      "resultado": "failed",
+      "intentos": 1,
+      "clasificacion": "DEMO_CONTROLADO",
+      "issue": "",
+      "error": "Error: expect(locator).toHaveText(expected) failed |  | Locator:  getByTestId('kpi-prods') | Expected: \"999\"",
+      "duracionMs": 2693
+    }
+  ]
+}

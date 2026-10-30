@@ -1,0 +1,171 @@
+{
+  "ambiente": "rc",
+  "build": "rc",
+  "generado": "2026-10-30T14:56:20.106Z",
+  "totales": {
+    "total": 14,
+    "passed": 6,
+    "failed": 8,
+    "flaky": 0,
+    "skipped": 0
+  },
+  "fallosPorClasificacion": {
+    "PRODUCTO": 8
+  },
+  "casos": [
+    {
+      "id": "QA01",
+      "caso": "carga el dashboard y permite navegar a todos los módulos",
+      "tags": "@smoke @regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "",
+      "error": "",
+      "duracionMs": 1694
+    },
+    {
+      "id": "QA01",
+      "caso": "el KPI de stock crítico coincide con los productos activos en estado crítico",
+      "tags": "@regression",
+      "resultado": "failed",
+      "intentos": 1,
+      "clasificacion": "PRODUCTO",
+      "issue": "DEF-12 (build rc)",
+      "error": "Error: expect(locator).toHaveText(expected) failed |  | Locator:  getByTestId('kpi-criticos') | Expected: \"2\"",
+      "duracionMs": 6672
+    },
+    {
+      "id": "QA02",
+      "caso": "rechaza una salida mayor al stock disponible e informa el motivo",
+      "tags": "@smoke @regression",
+      "resultado": "failed",
+      "intentos": 1,
+      "clasificacion": "PRODUCTO",
+      "issue": "DEF-07 (build rc)",
+      "error": "Error: expect(locator).toBeVisible() failed |  | Locator:  getByTestId('mov-alert') | Expected: visible",
+      "duracionMs": 6547
+    },
+    {
+      "id": "QA02",
+      "caso": "impide eliminar un producto con movimientos registrados",
+      "tags": "@regression",
+      "resultado": "failed",
+      "intentos": 1,
+      "clasificacion": "PRODUCTO",
+      "issue": "DEF-03 (build rc)",
+      "error": "Error: expect(locator).toBeVisible() failed |  | Locator:  getByTestId('ov-err') | Expected: visible",
+      "duracionMs": 6467
+    },
+    {
+      "id": "QA03",
+      "caso": "crea un producto y persiste al volver a consultarlo",
+      "tags": "@smoke @regression",
+      "resultado": "failed",
+      "intentos": 1,
+      "clasificacion": "PRODUCTO",
+      "issue": "DEF-01 (build rc)",
+      "error": "Error: título del formulario de alta |  | expect(locator).toHaveText(expected) failed | ",
+      "duracionMs": 7470
+    },
+    {
+      "id": "QA03",
+      "caso": "un producto creado con stock ≤ mínimo queda marcado como crítico y se advierte",
+      "tags": "@regression",
+      "resultado": "failed",
+      "intentos": 1,
+      "clasificacion": "PRODUCTO",
+      "issue": "DEF-02 (build rc)",
+      "error": "Error: expect(locator).toContainText(expected) failed |  | Locator: getByTestId('toast') | Expected substring: \"Stock Crítico\"",
+      "duracionMs": 7097
+    },
+    {
+      "id": "QA04",
+      "caso": "no guarda un producto con campos obligatorios vacíos y señala cada campo",
+      "tags": "@regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "",
+      "error": "",
+      "duracionMs": 1571
+    },
+    {
+      "id": "QA04",
+      "caso": "rechaza un código de producto duplicado",
+      "tags": "@regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "",
+      "error": "",
+      "duracionMs": 1461
+    },
+    {
+      "id": "QA04",
+      "caso": "rechaza un proveedor con correo electrónico inválido",
+      "tags": "@regression",
+      "resultado": "failed",
+      "intentos": 1,
+      "clasificacion": "PRODUCTO",
+      "issue": "DEF-10 (build rc)",
+      "error": "Error: expect(locator).toBeVisible() failed |  | Locator:  getByTestId('ov-prov').locator('#fe-pr-email') | Expected: visible",
+      "duracionMs": 6472
+    },
+    {
+      "id": "QA05",
+      "caso": "una entrada de inventario incrementa el stock y queda trazada",
+      "tags": "@regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "",
+      "error": "",
+      "duracionMs": 3674
+    },
+    {
+      "id": "QA05",
+      "caso": "editar un producto actualiza sus datos y el código no es editable",
+      "tags": "@regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "",
+      "error": "",
+      "duracionMs": 2821
+    },
+    {
+      "id": "QA06",
+      "caso": "busca productos por código y por nombre parcial",
+      "tags": "@regression",
+      "resultado": "failed",
+      "intentos": 1,
+      "clasificacion": "PRODUCTO",
+      "issue": "DEF-04 (build rc)",
+      "error": "Error: expect(locator).toHaveCount(expected) failed |  | Locator:  getByTestId('prod-row') | Expected: 1",
+      "duracionMs": 5781
+    },
+    {
+      "id": "QA06",
+      "caso": "filtra productos por categoría",
+      "tags": "@regression",
+      "resultado": "passed",
+      "intentos": 1,
+      "clasificacion": "",
+      "issue": "",
+      "error": "",
+      "duracionMs": 1135
+    },
+    {
+      "id": "QA06",
+      "caso": "filtra proveedores por estado",
+      "tags": "@regression",
+      "resultado": "failed",
+      "intentos": 1,
+      "clasificacion": "PRODUCTO",
+      "issue": "DEF-09 (build rc)",
+      "error": "Error: expect(locator).toHaveCount(expected) failed |  | Locator:  getByTestId('prov-row') | Expected: 1",
+      "duracionMs": 5895
+    }
+  ]
+}
